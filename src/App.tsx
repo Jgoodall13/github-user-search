@@ -1,13 +1,19 @@
-import { Counter } from "./components/Counter";
+import Card from "./components/Card";
+import NavBar from "./components/NavBar";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world! github user search
-      </h1>
-      <Counter />
-    </div>
+    <main
+      className="flex justify-center items-center bg-gh-100 h-screen
+    dark:bg-gh-900 "
+    >
+      <div className="w-3xl">
+        <NavBar />
+        <SearchBar />
+        <Card />
+      </div>
+    </main>
   );
 };
 

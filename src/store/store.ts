@@ -1,11 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counterSlice";
+import searchReducer from "./searchSlice";
+import { githubApi } from "../store/apiSlice";
 // ...
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    search: searchReducer,
+    [githubApi.reducerPath]: githubApi.reducer,
   },
+  // Adding the api middleware enables caching, invalidation, polling and other features of `createApi`
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(githubApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

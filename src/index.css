@@ -1,1 +1,29 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom theme variables */
+@theme {
+  --color-primary-blue: hsl(212, 100%, 50%);
+  --color-primary-red: hsl(0, 92%, 62%);
+
+  --color-blue-hover: hsla(212, 100%, 50%, 0.5);
+
+  --color-gh-100: hsl(227, 100%, 98%);
+  --color-gh-300: hsl(217, 20%, 51%);
+  --color-gh-500: hsl(217, 35%, 45%);
+  --color-gh-700: hsl(217, 21%, 21%);
+  --color-gh-800: hsla(222, 41%, 20%, 1);
+  --color-gh-900: hsl(220, 40%, 13%);
+
+  --font-spacemono: "Space Mono", monospace;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-spacemono);
+    color: var(--color-slate-900);
+  }
+  a {
+    color: var(--color-primary-lime);
+  }
+}
