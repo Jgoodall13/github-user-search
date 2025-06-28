@@ -24,7 +24,7 @@ const NavBar = () => {
         <div>
           <h1 className="text-2xl font-bold dark:text-white">devfinder</h1>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex justify-end items-center dark:text-white">
           <button className="flex cursor-pointer" onClick={toggleMode}>
             <span className="mr-4">{darkMode ? "Light" : "Dark"}</span>
             <img src={darkMode ? Sun : Moon} alt="" />

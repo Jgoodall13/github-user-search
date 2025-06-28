@@ -8,7 +8,7 @@ const App = () => {
       className="flex justify-center items-center bg-gh-100 h-screen
     dark:bg-gh-900 "
     >
-      <div className="w-3xl">
+      <div className="md:w-3xl">
         <NavBar />
         <SearchBar />
         <Card />

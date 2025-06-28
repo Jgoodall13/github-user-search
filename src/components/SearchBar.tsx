@@ -1,7 +1,22 @@
 import Search from "../assets/images/icon-search.svg";
 import type { RootState } from "../store/store";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearch } from "../store/searchSlice";
+import {
+  setSearch,
+  setName,
+  setLogin,
+  setBio,
+  setAvatar,
+  setCreated,
+  setLocation,
+  setTwitter,
+  setBlog,
+  setCompany,
+  setFollowers,
+  setFollowing,
+  setRepos,
+  setUrl,
+} from "../store/searchSlice";
 import { useLazyGetGithubUserByNameQuery } from "../store/apiSlice";
 
 const SearchBar = () => {
@@ -18,21 +33,35 @@ const SearchBar = () => {
 
     try {
       const ghData = await triggerSearch(searchInput).unwrap(); // We’ll use `data` elsewhere
-      console.log(ghData);
+      dispatch(setName(ghData.name || ""));
+      dispatch(setLogin(ghData.login || ""));
+      dispatch(setBio(ghData.bio || ""));
+      dispatch(setAvatar(ghData.avatar_url || ""));
+      dispatch(setCreated(ghData.created_at || ""));
+      dispatch(setLocation(ghData.location || ""));
+      dispatch(setTwitter(ghData.twitter_username || ""));
+      dispatch(setBlog(ghData.blog || ""));
+      dispatch(setCompany(ghData.company || ""));
+      dispatch(setFollowers(ghData.followers || 0));
+      dispatch(setFollowing(ghData.following || 0));
+      dispatch(setRepos(ghData.public_repos || 0));
+      dispatch(setUrl(ghData.html_url || ""));
+      dispatch(setSearch(""));
     } catch (err) {
-      console.log("error: ", err);
+      console.log("error: ", err, error, data);
+      dispatch(setSearch("")); // Clear the search bar on error
     }
   };
 
   return (
-    <div className="bg-white shadow-2xl flex flex-col gap-4 p-6 my-6 rounded-2xl dark:bg-gh-800">
+    <div className="bg-white shadow-2xl py-3 flex flex-col gap-4 my-6 rounded-2xl md:p-6 dark:bg-gh-800">
       <div className="flex justify-between items-center">
         <div className="relative">
           <img src={Search} className="absolute" alt="" />
           <input
             type="text"
-            className="pl-8 w-[300px] text-lg focus:outline-0"
-            placeholder="Search Github username..."
+            className="pl-8 text-md focus:outline-0 md:w-[300px] dark:placeholder:text-white"
+            placeholder="Github username..."
             value={searchInput}
             onChange={(e) => dispatch(setSearch(e.target.value))}
           />
